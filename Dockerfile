@@ -65,9 +65,5 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Expose port 80
 EXPOSE 80
 
-# Health check using our tested endpoint
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost/ || exit 1
-
 # Start supervisor
 CMD ["/usr/bin/supervisord"]
