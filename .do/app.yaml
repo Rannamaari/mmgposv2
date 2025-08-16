@@ -1,0 +1,48 @@
+name: mmg-pos
+services:
+  - name: web
+    source_dir: /
+    github:
+      repo: Rannamaari/mmgposv2
+      branch: main
+    dockerfile_path: Dockerfile
+    http_port: 80
+    routes:
+      - path: /
+    envs:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_NAME
+        value: "Micro Moto Garage POS"
+      - key: APP_KEY
+        value: "base64:6QU5dqOqvCIijgJXVp3RGaDZdYxazHzMnuSCHoM1rKM="
+      - key: LOG_CHANNEL
+        value: stack
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: file
+      - key: SESSION_LIFETIME
+        value: "120"
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: micronetdb-do-user-24249606-0.d.db.ondigitalocean.com
+      - key: DB_PORT
+        value: "25060"
+      - key: DB_DATABASE
+        value: mmgpos
+      - key: DB_USERNAME
+        value: doadmin
+      - key: DB_PASSWORD
+        value: ${DB_PASSWORD}
+      - key: DB_SSLMODE
+        value: require
+      - key: APP_URL
+        value: https://mmgpos-app-q42bd.ondigitalocean.app

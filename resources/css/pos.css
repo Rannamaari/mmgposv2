@@ -1,0 +1,217 @@
+/* POS Page Custom Styles */
+.pos-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Hide Filament Sidebar Navigation for POS */
+.pos-container .fi-sidebar,
+.pos-container .fi-main-ctn .fi-sidebar,
+.pos-container .fi-topbar,
+.pos-container nav[aria-label="Sidebar"] {
+    display: none !important;
+}
+
+/* Make main content full width */
+.pos-container .fi-main-ctn {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+.pos-container .fi-main {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.pos-container .fi-page {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Quick Service Button Improvements */
+.quick-service-btn {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.quick-service-btn:active {
+    transform: scale(0.95);
+}
+
+/* Form Styling - Enhanced Mobile */
+.fi-fo-section {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.fi-fo-section-header {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.fi-fo-section-content {
+    padding: 1.5rem;
+}
+
+/* Input Styling - Mobile Optimized */
+.fi-fo-text-input input,
+.fi-fo-select select {
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.2s ease;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 48px;
+}
+
+.fi-fo-text-input input:focus,
+.fi-fo-select select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Placeholder Styling for Cart Display */
+.fi-fo-placeholder {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px solid #e2e8f0;
+}
+
+/* Action Buttons - Enhanced */
+.fi-ac-btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-height: 48px;
+}
+
+.fi-ac-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+    .fi-fo-section-content {
+        padding: 1rem;
+    }
+
+    .fi-fo-section-header {
+        padding: 1rem 1.25rem;
+    }
+}
+
+/* Total Display Styling - Enhanced */
+.total-display {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+}
+
+.total-display input {
+    background: transparent;
+    color: white;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+.total-display input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Section Styling - Enhanced */
+.total-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #bbf7d0;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.fi-fo-section:has([name="payment_method"]) {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fbbf24;
+}
+
+.fi-fo-section:has([name="customer_id"]) {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 2px solid #60a5fa;
+}
+
+/* Better Mobile Form Layout */
+@media (max-width: 768px) {
+    .fi-fo-text-input,
+    .fi-fo-select {
+        margin-bottom: 1rem;
+    }
+
+    .fi-ac-btn {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+
+    .fi-ac-btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Touch-friendly improvements */
+.fi-fo-text-input input,
+.fi-fo-select select,
+.fi-fo-radio input,
+.fi-fo-checkbox input {
+    min-height: 48px;
+    font-size: 16px;
+}
+
+/* Better focus states */
+.fi-fo-text-input input:focus,
+.fi-fo-select select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+/* Loading states */
+.pos-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Success animation */
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.success-animation {
+    animation: successPulse 0.5s ease-in-out;
+}
+
+/* Enhanced Modal Styling */
+#quickServiceModal {
+    backdrop-filter: blur(4px);
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 480px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
