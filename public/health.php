@@ -1,1 +1,1 @@
-<?php echo "OK"; ?>
+<?php header("Content-Type: text/plain"); echo "OK"; exit; ?>

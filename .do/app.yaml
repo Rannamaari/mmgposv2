@@ -9,12 +9,12 @@ services:
     http_port: 80
     run_command: php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && /usr/bin/supervisord
     health_check:
-      http_path: /
-      initial_delay_seconds: 30
-      period_seconds: 10
-      timeout_seconds: 5
+      http_path: /health.php
+      initial_delay_seconds: 60
+      period_seconds: 30
+      timeout_seconds: 10
       success_threshold: 1
-      failure_threshold: 3
+      failure_threshold: 5
     routes:
       - path: /
     envs:
