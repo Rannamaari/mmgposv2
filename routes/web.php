@@ -3,47 +3,29 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\POSController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Root redirect to admin
 Route::get('/', function () {
-    return redirect('/admin/login');
-});
-
-// Simple test route
-Route::get('/hello', function () {
-    return 'Hello World! This route works!';
+    return redirect('/admin');
 });
 
 // Health check route
 Route::get('/health', function () {
-    return response()->json([
-        'status' => 'ok',
-        'timestamp' => now(),
-        'app' => config('app.name'),
-        'env' => config('app.env')
-    ]);
+    return response('OK', 200)->header('Content-Type', 'text/plain');
 });
 
-// Simple test route
+// Test routes
+Route::get('/hello', function () {
+    return 'Hello World! This route works!';
+});
+
 Route::get('/test', function () {
     return 'Test route is working!';
 });
 
-// Very simple route
 Route::get('/simple', function () {
     return 'Hello World!';
 });
 
-// Database test route
 Route::get('/db-test', function () {
     try {
         DB::connection()->getPdo();
@@ -53,7 +35,6 @@ Route::get('/db-test', function () {
     }
 });
 
-// Simple POS test route
 Route::get('/pos-test', function () {
     return 'POS test route is working!';
 });
@@ -67,20 +48,26 @@ Route::get('/routes', function () {
     return response()->json($routes);
 });
 
-// Standalone POS Route (protected by auth middleware)
+// POS Route - requires authentication
 Route::get('/pos', function () {
+    // Check if user is authenticated
+    if (!auth()->check()) {
+        // Redirect to Filament login if not authenticated
+        return redirect('/admin/login');
+    }
+    
     try {
         return view('pos.standalone');
     } catch (Exception $e) {
         return 'Error loading POS: ' . $e->getMessage();
     }
-})->middleware(['auth'])->name('pos.standalone');
+})->name('pos.standalone');
 
 // Simple POS test without Livewire
 Route::get('/pos-simple', function () {
     return '<h1>POS Simple Test</h1><p>This works without Livewire</p>';
 });
 
-// PDF Invoice Routes (no middleware for testing)
+// PDF Invoice Routes
 Route::get('/invoice/{invoice}/pdf', [App\Http\Controllers\InvoiceController::class, 'generatePdf'])->name('invoice.pdf');
 Route::get('/invoice/{invoice}/view-pdf', [App\Http\Controllers\InvoiceController::class, 'viewPdf'])->name('invoice.view-pdf');
