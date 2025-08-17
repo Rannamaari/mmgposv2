@@ -27,7 +27,7 @@ class WorkOrderItemResource extends Resource
     public static function shouldRegisterNavigation(): bool
     {
         // Only show to admin users, hide from pos_user
-        return auth()->user()?->hasRole('admin') ?? false;
+        return auth()->check();
     }
 
     public static function form(Schema $schema): Schema

@@ -80,11 +80,11 @@
                         </a>
                         
                         <!-- Admin Panel link - only for admin users (if they want full admin features) -->
-                        @if(auth()->user()->hasRole('admin'))
+                        <!-- Admin Panel link - available for all authenticated users -->
                             <a href="/admin" class="text-blue-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">
                                 ⚙️ Admin Panel
                             </a>
-                        @endif
+                        
                         
                         <!-- Sign Out button -->
                         <form method="POST" action="{{ route('logout') }}" class="inline">
