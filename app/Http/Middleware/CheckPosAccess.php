@@ -20,14 +20,7 @@ class CheckPosAccess
             return redirect()->route('login');
         }
 
-        $user = auth()->user();
-
-        // Allow admin and pos_user roles to access POS
-        if ($user->hasRole('admin') || $user->hasRole('pos_user')) {
-            return $next($request);
-        }
-
-        // Deny access for other users
-        abort(403, 'You do not have permission to access the POS system.');
+        // Allow all authenticated users to access POS
+        return $next($request);
     }
 }
